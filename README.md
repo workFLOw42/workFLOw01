@@ -1,6 +1,14 @@
+<p align="center">
+  <img src="assets/logo@2x.png" alt="workFLOw 01" width="256"/>
+</p>
+
 # workFLOw 01
 
 Analog watchface for Wear OS with moon phases and customizable hand colors.
+
+<p align="center">
+  <img src="assets/screenshots/workFLOw01_20260320.png" alt="Screenshot" width="300"/>
+</p>
 
 ## Features
 
@@ -74,10 +82,14 @@ adb install out/com.watchfacestudio.workFLOw.apk
 src/
   AndroidManifest.xml          # App manifest (version, SDK, package)
   raw/watchface.xml            # Main watchface definition (WFF v2)
-  xml/watch_face.xml           # Wear OS wallpaper stub
-  xml/watch_face_info.xml      # Editor metadata
-  xml/watch_face_shapes.xml    # Watch shape definition
+  xml/                         # Wear OS config XMLs
   drawable-nodpi-v4/           # PNG assets (moon texture, previews)
+  values/strings.xml           # English strings (default)
+  values-de/strings.xml        # German strings
+assets/
+  icon.png / icon@2x.png       # App icon (256 / 512px)
+  logo.png / logo@2x.png       # Logo (256 / 512px)
+  screenshots/                 # Watchface screenshots
 docs/
   privacy-policy.html          # Privacy policy (GitHub Pages)
 build.py                       # Build script
