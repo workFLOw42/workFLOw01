@@ -1,34 +1,34 @@
 <WatchFace width="450" height="450" clipShape="CIRCLE">
 <Metadata key="CLOCK_TYPE" value="ANALOG"/>
 <UserConfigurations>
-<ListConfiguration id="moon_pos" displayName="@string/moon_pos_label" defaultValue="left" screenReaderText="@string/moon_pos_desc">
-<ListOption id="left" displayName="@string/pos_left"/>
-<ListOption id="right" displayName="@string/pos_right"/>
-<ListOption id="top" displayName="@string/pos_top"/>
-<ListOption id="bottom" displayName="@string/pos_bottom"/>
-<ListOption id="off" displayName="@string/pos_off"/>
+<ListConfiguration id="moon_pos" displayName="@string/moon_pos_label" defaultValue="left" screenReaderText="@string/moon_pos_desc" icon="@drawable/ic_pos_left">
+<ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left"/>
+<ListOption id="right" displayName="@string/pos_right" icon="@drawable/ic_pos_right"/>
+<ListOption id="top" displayName="@string/pos_top" icon="@drawable/ic_pos_top"/>
+<ListOption id="bottom" displayName="@string/pos_bottom" icon="@drawable/ic_pos_bottom"/>
+<ListOption id="off" displayName="@string/pos_off" icon="@drawable/ic_pos_off"/>
 </ListConfiguration>
-<ListConfiguration id="date_pos" displayName="@string/date_pos_label" defaultValue="right" screenReaderText="@string/date_pos_desc">
-<ListOption id="left" displayName="@string/pos_left"/>
-<ListOption id="right" displayName="@string/pos_right"/>
-<ListOption id="top" displayName="@string/pos_top"/>
-<ListOption id="bottom" displayName="@string/pos_bottom"/>
-<ListOption id="off" displayName="@string/pos_off"/>
+<ListConfiguration id="date_pos" displayName="@string/date_pos_label" defaultValue="right" screenReaderText="@string/date_pos_desc" icon="@drawable/ic_pos_right">
+<ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left"/>
+<ListOption id="right" displayName="@string/pos_right" icon="@drawable/ic_pos_right"/>
+<ListOption id="top" displayName="@string/pos_top" icon="@drawable/ic_pos_top"/>
+<ListOption id="bottom" displayName="@string/pos_bottom" icon="@drawable/ic_pos_bottom"/>
+<ListOption id="off" displayName="@string/pos_off" icon="@drawable/ic_pos_off"/>
 </ListConfiguration>
-<ListConfiguration id="color_hours" displayName="@string/color_hours_label" defaultValue="white" screenReaderText="@string/color_hours_desc">
-<ListOption id="white" displayName="@string/color_white"/>
-<ListOption id="blue" displayName="@string/color_blue"/>
-<ListOption id="red" displayName="@string/color_red"/>
+<ListConfiguration id="color_hours" displayName="@string/color_hours_label" defaultValue="white" screenReaderText="@string/color_hours_desc" icon="@drawable/ic_color_white">
+<ListOption id="white" displayName="@string/color_white" icon="@drawable/ic_color_white"/>
+<ListOption id="blue" displayName="@string/color_blue" icon="@drawable/ic_color_blue"/>
+<ListOption id="red" displayName="@string/color_red" icon="@drawable/ic_color_red"/>
 </ListConfiguration>
-<ListConfiguration id="color_minutes" displayName="@string/color_minutes_label" defaultValue="blue" screenReaderText="@string/color_minutes_desc">
-<ListOption id="white" displayName="@string/color_white"/>
-<ListOption id="blue" displayName="@string/color_blue"/>
-<ListOption id="red" displayName="@string/color_red"/>
+<ListConfiguration id="color_minutes" displayName="@string/color_minutes_label" defaultValue="blue" screenReaderText="@string/color_minutes_desc" icon="@drawable/ic_color_blue">
+<ListOption id="white" displayName="@string/color_white" icon="@drawable/ic_color_white"/>
+<ListOption id="blue" displayName="@string/color_blue" icon="@drawable/ic_color_blue"/>
+<ListOption id="red" displayName="@string/color_red" icon="@drawable/ic_color_red"/>
 </ListConfiguration>
-<ListConfiguration id="color_seconds" displayName="@string/color_seconds_label" defaultValue="red" screenReaderText="@string/color_seconds_desc">
-<ListOption id="white" displayName="@string/color_white"/>
-<ListOption id="blue" displayName="@string/color_blue"/>
-<ListOption id="red" displayName="@string/color_red"/>
+<ListConfiguration id="color_seconds" displayName="@string/color_seconds_label" defaultValue="red" screenReaderText="@string/color_seconds_desc" icon="@drawable/ic_color_red">
+<ListOption id="white" displayName="@string/color_white" icon="@drawable/ic_color_white"/>
+<ListOption id="blue" displayName="@string/color_blue" icon="@drawable/ic_color_blue"/>
+<ListOption id="red" displayName="@string/color_red" icon="@drawable/ic_color_red"/>
 </ListConfiguration>
 </UserConfigurations>
 <Scene backgroundColor="#ff000000">
