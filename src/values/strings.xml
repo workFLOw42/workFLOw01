@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">workFLOw 01</string>
+
+    <!-- Complication Slots -->
+    <string name="slot_bottom">Bottom field</string>
+    <string name="slot_top">Top field</string>
+
+    <!-- Moon Position -->
+    <string name="moon_pos_label">Moon Phase</string>
+    <string name="moon_pos_desc">Position of the moon phase</string>
+
+    <!-- Date Position -->
+    <string name="date_pos_label">Day &amp; Weekday</string>
+    <string name="date_pos_desc">Position of day and weekday</string>
+
+    <!-- Positions -->
+    <string name="pos_left">Left</string>
+    <string name="pos_right">Right</string>
+    <string name="pos_top">Top</string>
+    <string name="pos_bottom">Bottom</string>
+    <string name="pos_off">Off</string>
+
+    <!-- Hand Colors -->
+    <string name="color_hours_label">Hour hand</string>
+    <string name="color_hours_desc">Hour hand color</string>
+    <string name="color_minutes_label">Minute hand</string>
+    <string name="color_minutes_desc">Minute hand color</string>
+    <string name="color_seconds_label">Second hand</string>
+    <string name="color_seconds_desc">Second hand color</string>
+
+    <!-- Color Names -->
+    <string name="color_white">Warm white</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_red">Red</string>
+</resources>
