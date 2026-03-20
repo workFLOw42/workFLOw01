@@ -82,6 +82,16 @@ def main():
          os.path.join(SRC, "raw", "watchface.xml"),
          "-o", compiled_dir])
 
+    # Compile values (strings) resources
+    for values_dir in ["values", "values-de"]:
+        vdir = os.path.join(SRC, values_dir)
+        if os.path.isdir(vdir):
+            for f in os.listdir(vdir):
+                if f.endswith(".xml"):
+                    run([AAPT2, "compile",
+                         os.path.join(vdir, f),
+                         "-o", compiled_dir])
+
     # Step 2: Link into proto-format APK
     print("\n[2/5] Linking resources...")
     base_apk = os.path.join(BUILD, "base.apk")
@@ -95,8 +105,8 @@ def main():
          "--manifest", os.path.join(SRC, "AndroidManifest.xml"),
          "--min-sdk-version", "34",
          "--target-sdk-version", "34",
-         "--version-code", "10000004",
-         "--version-name", "1.2.0",
+         "--version-code", "10000005",
+         "--version-name", "1.3.0",
          ] + flat_files)
 
     # Step 3: Repackage as AAB
@@ -160,7 +170,7 @@ def main():
     print(f"\n=== Build complete ===")
     print(f"Output: {signed_aab}")
     print(f"Size: {size:,} bytes")
-    print(f"Version: 1.2.0 (10000004)")
+    print(f"Version: 1.3.0 (10000005)")
     print(f"\nUpload this file to Google Play Console.")
 
 

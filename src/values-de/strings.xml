@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">workFLOw 01</string>
+
+    <!-- Complication Slots -->
+    <string name="slot_bottom">Feld unten</string>
+    <string name="slot_top">Feld oben</string>
+
+    <!-- Moon Position -->
+    <string name="moon_pos_label">Mondphase</string>
+    <string name="moon_pos_desc">Position der Mondphase</string>
+
+    <!-- Date Position -->
+    <string name="date_pos_label">Tag &amp; Wochentag</string>
+    <string name="date_pos_desc">Position von Tag und Wochentag</string>
+
+    <!-- Positions -->
+    <string name="pos_left">Links</string>
+    <string name="pos_right">Rechts</string>
+    <string name="pos_top">Oben</string>
+    <string name="pos_bottom">Unten</string>
+    <string name="pos_off">Aus</string>
+
+    <!-- Hand Colors -->
+    <string name="color_hours_label">Stundenzeiger</string>
+    <string name="color_hours_desc">Farbe des Stundenzeigers</string>
+    <string name="color_minutes_label">Minutenzeiger</string>
+    <string name="color_minutes_desc">Farbe des Minutenzeigers</string>
+    <string name="color_seconds_label">Sekundenzeiger</string>
+    <string name="color_seconds_desc">Farbe des Sekundenzeigers</string>
+
+    <!-- Color Names -->
+    <string name="color_white">Warmwei\u00df</string>
+    <string name="color_blue">Blau</string>
+    <string name="color_red">Rot</string>
+</resources>

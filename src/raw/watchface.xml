@@ -1,43 +1,38 @@
 <WatchFace width="450" height="450" clipShape="CIRCLE">
 <Metadata key="CLOCK_TYPE" value="ANALOG"/>
 <UserConfigurations>
-<!-- Position: Mondphase -->
-<ListConfiguration id="moon_pos" displayName="Mondphase" defaultValue="left" screenReaderText="Position der Mondphase">
-<ListOption id="left" displayName="Links"/>
-<ListOption id="right" displayName="Rechts"/>
-<ListOption id="top" displayName="Oben"/>
-<ListOption id="bottom" displayName="Unten"/>
-<ListOption id="off" displayName="Aus"/>
+<ListConfiguration id="moon_pos" displayName="@string/moon_pos_label" defaultValue="left" screenReaderText="@string/moon_pos_desc">
+<ListOption id="left" displayName="@string/pos_left"/>
+<ListOption id="right" displayName="@string/pos_right"/>
+<ListOption id="top" displayName="@string/pos_top"/>
+<ListOption id="bottom" displayName="@string/pos_bottom"/>
+<ListOption id="off" displayName="@string/pos_off"/>
 </ListConfiguration>
-<!-- Position: Tag & Wochentag -->
-<ListConfiguration id="date_pos" displayName="Tag &amp; Wochentag" defaultValue="right" screenReaderText="Position von Tag und Wochentag">
-<ListOption id="left" displayName="Links"/>
-<ListOption id="right" displayName="Rechts"/>
-<ListOption id="top" displayName="Oben"/>
-<ListOption id="bottom" displayName="Unten"/>
-<ListOption id="off" displayName="Aus"/>
+<ListConfiguration id="date_pos" displayName="@string/date_pos_label" defaultValue="right" screenReaderText="@string/date_pos_desc">
+<ListOption id="left" displayName="@string/pos_left"/>
+<ListOption id="right" displayName="@string/pos_right"/>
+<ListOption id="top" displayName="@string/pos_top"/>
+<ListOption id="bottom" displayName="@string/pos_bottom"/>
+<ListOption id="off" displayName="@string/pos_off"/>
 </ListConfiguration>
-<!-- Farbe: Stundenzeiger -->
-<ListConfiguration id="color_hours" displayName="Stundenzeiger" defaultValue="white" screenReaderText="Farbe des Stundenzeigers">
-<ListOption id="white" displayName="Warmwei&#223;"/>
-<ListOption id="blue" displayName="Blau"/>
-<ListOption id="red" displayName="Rot"/>
+<ListConfiguration id="color_hours" displayName="@string/color_hours_label" defaultValue="white" screenReaderText="@string/color_hours_desc">
+<ListOption id="white" displayName="@string/color_white"/>
+<ListOption id="blue" displayName="@string/color_blue"/>
+<ListOption id="red" displayName="@string/color_red"/>
 </ListConfiguration>
-<!-- Farbe: Minutenzeiger -->
-<ListConfiguration id="color_minutes" displayName="Minutenzeiger" defaultValue="blue" screenReaderText="Farbe des Minutenzeigers">
-<ListOption id="white" displayName="Warmwei&#223;"/>
-<ListOption id="blue" displayName="Blau"/>
-<ListOption id="red" displayName="Rot"/>
+<ListConfiguration id="color_minutes" displayName="@string/color_minutes_label" defaultValue="blue" screenReaderText="@string/color_minutes_desc">
+<ListOption id="white" displayName="@string/color_white"/>
+<ListOption id="blue" displayName="@string/color_blue"/>
+<ListOption id="red" displayName="@string/color_red"/>
 </ListConfiguration>
-<!-- Farbe: Sekundenzeiger -->
-<ListConfiguration id="color_seconds" displayName="Sekundenzeiger" defaultValue="red" screenReaderText="Farbe des Sekundenzeigers">
-<ListOption id="white" displayName="Warmwei&#223;"/>
-<ListOption id="blue" displayName="Blau"/>
-<ListOption id="red" displayName="Rot"/>
+<ListConfiguration id="color_seconds" displayName="@string/color_seconds_label" defaultValue="red" screenReaderText="@string/color_seconds_desc">
+<ListOption id="white" displayName="@string/color_white"/>
+<ListOption id="blue" displayName="@string/color_blue"/>
+<ListOption id="red" displayName="@string/color_red"/>
 </ListConfiguration>
 </UserConfigurations>
 <Scene backgroundColor="#ff000000">
-<ComplicationSlot slotId="0" displayName="Feld unten" isCustomizable="TRUE" supportedTypes="SHORT_TEXT RANGED_VALUE GOAL_PROGRESS WEIGHTED_ELEMENTS SMALL_IMAGE MONOCHROMATIC_IMAGE" pivotY="-1.0556" x="180" y="320" width="90" height="90" name="Feldunten_0" alpha="255">
+<ComplicationSlot slotId="0" displayName="@string/slot_bottom" isCustomizable="TRUE" supportedTypes="SHORT_TEXT RANGED_VALUE GOAL_PROGRESS WEIGHTED_ELEMENTS SMALL_IMAGE MONOCHROMATIC_IMAGE" pivotY="-1.0556" x="180" y="320" width="90" height="90" name="Feldunten_0" alpha="255">
 <Variant mode="AMBIENT" target="alpha" value="0"/>
 <DefaultProviderPolicy defaultSystemProvider="STEP_COUNT" defaultSystemProviderType="SHORT_TEXT"/>
 <BoundingOval x="0" y="0" width="90" height="90"/>
@@ -795,7 +790,7 @@
 </Complication>
 <Complication type="EMPTY"/>
 </ComplicationSlot>
-<ComplicationSlot slotId="1" displayName="Feld oben" isCustomizable="TRUE" supportedTypes="SHORT_TEXT RANGED_VALUE GOAL_PROGRESS WEIGHTED_ELEMENTS SMALL_IMAGE MONOCHROMATIC_IMAGE" pivotY="2.0556" x="180" y="40" width="90" height="90" name="Feldoben_1" alpha="255">
+<ComplicationSlot slotId="1" displayName="@string/slot_top" isCustomizable="TRUE" supportedTypes="SHORT_TEXT RANGED_VALUE GOAL_PROGRESS WEIGHTED_ELEMENTS SMALL_IMAGE MONOCHROMATIC_IMAGE" pivotY="2.0556" x="180" y="40" width="90" height="90" name="Feldoben_1" alpha="255">
 <Variant mode="AMBIENT" target="alpha" value="0"/>
 <DefaultProviderPolicy defaultSystemProvider="SUNRISE_SUNSET" defaultSystemProviderType="SHORT_TEXT"/>
 <BoundingOval x="0" y="0" width="90" height="90"/>
