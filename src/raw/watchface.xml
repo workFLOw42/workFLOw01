@@ -1,8 +1,40 @@
 <WatchFace width="450" height="450" clipShape="CIRCLE">
 <Metadata key="CLOCK_TYPE" value="ANALOG"/>
 <UserConfigurations>
-<BooleanConfiguration id="show_moon" displayName="Mondphase" defaultValue="TRUE" screenReaderText="Mondphase anzeigen oder ausblenden"/>
-<BooleanConfiguration id="show_date" displayName="Tag &amp; Wochentag" defaultValue="TRUE" screenReaderText="Tag und Wochentag anzeigen oder ausblenden"/>
+<!-- Position: Mondphase -->
+<ListConfiguration id="moon_pos" displayName="Mondphase" defaultValue="left" screenReaderText="Position der Mondphase">
+<ListOption id="left" displayName="Links"/>
+<ListOption id="right" displayName="Rechts"/>
+<ListOption id="top" displayName="Oben"/>
+<ListOption id="bottom" displayName="Unten"/>
+<ListOption id="off" displayName="Aus"/>
+</ListConfiguration>
+<!-- Position: Tag & Wochentag -->
+<ListConfiguration id="date_pos" displayName="Tag &amp; Wochentag" defaultValue="right" screenReaderText="Position von Tag und Wochentag">
+<ListOption id="left" displayName="Links"/>
+<ListOption id="right" displayName="Rechts"/>
+<ListOption id="top" displayName="Oben"/>
+<ListOption id="bottom" displayName="Unten"/>
+<ListOption id="off" displayName="Aus"/>
+</ListConfiguration>
+<!-- Farbe: Stundenzeiger -->
+<ListConfiguration id="color_hours" displayName="Stundenzeiger" defaultValue="white" screenReaderText="Farbe des Stundenzeigers">
+<ListOption id="white" displayName="Warmwei&#223;"/>
+<ListOption id="blue" displayName="Blau"/>
+<ListOption id="red" displayName="Rot"/>
+</ListConfiguration>
+<!-- Farbe: Minutenzeiger -->
+<ListConfiguration id="color_minutes" displayName="Minutenzeiger" defaultValue="blue" screenReaderText="Farbe des Minutenzeigers">
+<ListOption id="white" displayName="Warmwei&#223;"/>
+<ListOption id="blue" displayName="Blau"/>
+<ListOption id="red" displayName="Rot"/>
+</ListConfiguration>
+<!-- Farbe: Sekundenzeiger -->
+<ListConfiguration id="color_seconds" displayName="Sekundenzeiger" defaultValue="red" screenReaderText="Farbe des Sekundenzeigers">
+<ListOption id="white" displayName="Warmwei&#223;"/>
+<ListOption id="blue" displayName="Blau"/>
+<ListOption id="red" displayName="Rot"/>
+</ListConfiguration>
 </UserConfigurations>
 <Scene backgroundColor="#ff000000">
 <ComplicationSlot slotId="0" displayName="Feld unten" isCustomizable="TRUE" supportedTypes="SHORT_TEXT RANGED_VALUE GOAL_PROGRESS WEIGHTED_ELEMENTS SMALL_IMAGE MONOCHROMATIC_IMAGE" pivotY="-1.0556" x="180" y="320" width="90" height="90" name="Feldunten_0" alpha="255">
@@ -1523,20 +1555,62 @@
 </ComplicationSlot>
 <Group x="5" y="5" width="440" height="440" name="ZeigerAlways-On_00ad" alpha="0">
 <Variant mode="AMBIENT" target="alpha" value="255"/>
-<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="MinutenAO_5a22" tintColor="#ff46a9ff" alpha="0">
+<!-- Minutenzeiger AO (Farbe konfigurierbar) -->
+<Condition>
+<Expressions>
+<Expression name="min_ao_blue"><![CDATA[[CONFIGURATION.color_minutes] == "blue"]]></Expression>
+<Expression name="min_ao_white"><![CDATA[[CONFIGURATION.color_minutes] == "white"]]></Expression>
+</Expressions>
+<Compare expression="min_ao_blue">
+<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="MinutenAO_b" tintColor="#ff46a9ff" alpha="0">
 <Variant mode="AMBIENT" target="alpha" value="255"/>
 <Transform target="angle" value="0 + ([MINUTE_SECOND]*6)"/>
-<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5">
-<Fill color="#bfffffff"/>
-</RoundRectangle>
+<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#bfffffff"/></RoundRectangle>
 </PartDraw>
-<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="StundeAO_b4d4" tintColor="#fff7f9ef" alpha="0">
+</Compare>
+<Compare expression="min_ao_white">
+<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="MinutenAO_w" tintColor="#fff7f9ef" alpha="0">
+<Variant mode="AMBIENT" target="alpha" value="255"/>
+<Transform target="angle" value="0 + ([MINUTE_SECOND]*6)"/>
+<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#bfffffff"/></RoundRectangle>
+</PartDraw>
+</Compare>
+<Default>
+<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="MinutenAO_r" tintColor="#ffff6a6a" alpha="0">
+<Variant mode="AMBIENT" target="alpha" value="255"/>
+<Transform target="angle" value="0 + ([MINUTE_SECOND]*6)"/>
+<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#bfffffff"/></RoundRectangle>
+</PartDraw>
+</Default>
+</Condition>
+<!-- Stundenzeiger AO (Farbe konfigurierbar) -->
+<Condition>
+<Expressions>
+<Expression name="hr_ao_white"><![CDATA[[CONFIGURATION.color_hours] == "white"]]></Expression>
+<Expression name="hr_ao_blue"><![CDATA[[CONFIGURATION.color_hours] == "blue"]]></Expression>
+</Expressions>
+<Compare expression="hr_ao_white">
+<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="StundeAO_w" tintColor="#fff7f9ef" alpha="0">
 <Variant mode="AMBIENT" target="alpha" value="255"/>
 <Transform target="angle" value="0 + ([HOUR_1_12_MINUTE]*30)"/>
-<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5">
-<Fill color="#bfffffff"/>
-</RoundRectangle>
+<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#bfffffff"/></RoundRectangle>
 </PartDraw>
+</Compare>
+<Compare expression="hr_ao_blue">
+<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="StundeAO_b" tintColor="#ff46a9ff" alpha="0">
+<Variant mode="AMBIENT" target="alpha" value="255"/>
+<Transform target="angle" value="0 + ([HOUR_1_12_MINUTE]*30)"/>
+<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#bfffffff"/></RoundRectangle>
+</PartDraw>
+</Compare>
+<Default>
+<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="StundeAO_r" tintColor="#ffff6a6a" alpha="0">
+<Variant mode="AMBIENT" target="alpha" value="255"/>
+<Transform target="angle" value="0 + ([HOUR_1_12_MINUTE]*30)"/>
+<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#bfffffff"/></RoundRectangle>
+</PartDraw>
+</Default>
+</Condition>
 <PartDraw x="216" y="216" width="8" height="8" name="MittelpunktAO_d655" alpha="0">
 <Variant mode="AMBIENT" target="alpha" value="255"/>
 <Ellipse x="0" y="0" width="8" height="8">
@@ -1544,9 +1618,10 @@
 </Ellipse>
 </PartDraw>
 </Group>
-<!-- Mondphase (togglebar via UserConfiguration) -->
+<!-- Mondphase (Position per ListConfiguration) -->
 <Group x="50" y="202" width="48" height="46" name="Mond_toggle" alpha="255">
-<Transform target="alpha" value="[CONFIGURATION.show_moon] ? 255 : 0"/>
+<Transform target="x" value="[CONFIGURATION.moon_pos] == &quot;left&quot; ? 50 : ([CONFIGURATION.moon_pos] == &quot;right&quot; ? 352 : ([CONFIGURATION.moon_pos] == &quot;top&quot; ? 201 : ([CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 201 : -200)))"/>
+<Transform target="y" value="[CONFIGURATION.moon_pos] == &quot;left&quot; ? 202 : ([CONFIGURATION.moon_pos] == &quot;right&quot; ? 202 : ([CONFIGURATION.moon_pos] == &quot;top&quot; ? 55 : ([CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 345 : -200)))"/>
 <Group x="0" y="0" width="48" height="46" name="Mond_bc63" alpha="255">
 <Variant mode="AMBIENT" target="alpha" value="0"/>
 <!-- Basis: Vollmond-Textur -->
@@ -1670,34 +1745,94 @@
 </RoundRectangle>
 </PartDraw>
 </Group>
-<PartDraw pivotY="11" x="216" y="0" width="8" height="20" name="Sekunden_f7b2" tintColor="#ffff6a6a" alpha="255">
+<!-- Sekundenzeiger (Farbe konfigurierbar) -->
+<Condition>
+<Expressions>
+<Expression name="sec_red"><![CDATA[[CONFIGURATION.color_seconds] == "red"]]></Expression>
+<Expression name="sec_blue"><![CDATA[[CONFIGURATION.color_seconds] == "blue"]]></Expression>
+</Expressions>
+<Compare expression="sec_red">
+<PartDraw pivotY="11" x="216" y="0" width="8" height="20" name="Sek_r" tintColor="#ffff6a6a" alpha="255">
 <Variant mode="AMBIENT" target="alpha" value="0"/>
 <Transform target="angle" value="0 + ([SECOND_MILLISECOND]*6)"/>
-<RoundRectangle x="0" y="0" width="8" height="20" cornerRadiusX="3.5" cornerRadiusY="3.5">
-<Fill color="#ffffffff"/>
-</RoundRectangle>
+<RoundRectangle x="0" y="0" width="8" height="20" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
 </PartDraw>
-<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="Minuten_91fc" tintColor="#ff46a9ff" alpha="255">
+</Compare>
+<Compare expression="sec_blue">
+<PartDraw pivotY="11" x="216" y="0" width="8" height="20" name="Sek_b" tintColor="#ff46a9ff" alpha="255">
+<Variant mode="AMBIENT" target="alpha" value="0"/>
+<Transform target="angle" value="0 + ([SECOND_MILLISECOND]*6)"/>
+<RoundRectangle x="0" y="0" width="8" height="20" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
+</PartDraw>
+</Compare>
+<Default>
+<PartDraw pivotY="11" x="216" y="0" width="8" height="20" name="Sek_w" tintColor="#fff7f9ef" alpha="255">
+<Variant mode="AMBIENT" target="alpha" value="0"/>
+<Transform target="angle" value="0 + ([SECOND_MILLISECOND]*6)"/>
+<RoundRectangle x="0" y="0" width="8" height="20" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
+</PartDraw>
+</Default>
+</Condition>
+<!-- Minutenzeiger (Farbe konfigurierbar) -->
+<Condition>
+<Expressions>
+<Expression name="min_blue"><![CDATA[[CONFIGURATION.color_minutes] == "blue"]]></Expression>
+<Expression name="min_white"><![CDATA[[CONFIGURATION.color_minutes] == "white"]]></Expression>
+</Expressions>
+<Compare expression="min_blue">
+<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="Min_b" tintColor="#ff46a9ff" alpha="255">
 <Transform target="angle" value="0 + ([MINUTE_SECOND]*6)"/>
-<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5">
-<Fill color="#ffffffff"/>
-</RoundRectangle>
+<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
 </PartDraw>
-<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="Stunde_4f43" tintColor="#fff7f9ef" alpha="255">
+</Compare>
+<Compare expression="min_white">
+<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="Min_w" tintColor="#fff7f9ef" alpha="255">
+<Transform target="angle" value="0 + ([MINUTE_SECOND]*6)"/>
+<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
+</PartDraw>
+</Compare>
+<Default>
+<PartDraw pivotY="0.9722" x="216" y="45" width="8" height="180" name="Min_r" tintColor="#ffff6a6a" alpha="255">
+<Transform target="angle" value="0 + ([MINUTE_SECOND]*6)"/>
+<RoundRectangle x="0" y="0" width="8" height="180" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
+</PartDraw>
+</Default>
+</Condition>
+<!-- Stundenzeiger (Farbe konfigurierbar) -->
+<Condition>
+<Expressions>
+<Expression name="hr_white"><![CDATA[[CONFIGURATION.color_hours] == "white"]]></Expression>
+<Expression name="hr_blue"><![CDATA[[CONFIGURATION.color_hours] == "blue"]]></Expression>
+</Expressions>
+<Compare expression="hr_white">
+<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="Std_w" tintColor="#fff7f9ef" alpha="255">
 <Transform target="angle" value="0 + ([HOUR_1_12_MINUTE]*30)"/>
-<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5">
-<Fill color="#ffffffff"/>
-</RoundRectangle>
+<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
 </PartDraw>
+</Compare>
+<Compare expression="hr_blue">
+<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="Std_b" tintColor="#ff46a9ff" alpha="255">
+<Transform target="angle" value="0 + ([HOUR_1_12_MINUTE]*30)"/>
+<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
+</PartDraw>
+</Compare>
+<Default>
+<PartDraw pivotY="0.9667" x="216" y="75" width="8" height="150" name="Std_r" tintColor="#ffff6a6a" alpha="255">
+<Transform target="angle" value="0 + ([HOUR_1_12_MINUTE]*30)"/>
+<RoundRectangle x="0" y="0" width="8" height="150" cornerRadiusX="3.5" cornerRadiusY="3.5"><Fill color="#ffffffff"/></RoundRectangle>
+</PartDraw>
+</Default>
+</Condition>
 <PartDraw x="216" y="216" width="8" height="8" name="Mittelpunkt_7562" alpha="255">
 <Ellipse x="0" y="0" width="8" height="8">
 <Fill color="#fff2efef"/>
 </Ellipse>
 </PartDraw>
 </Group>
-<!-- Wochentag & Tag (togglebar via UserConfiguration) -->
+<!-- Wochentag & Tag (Position per ListConfiguration) -->
 <Group x="310" y="180" width="90" height="90" name="Datum_toggle" alpha="255">
-<Transform target="alpha" value="[CONFIGURATION.show_date] ? 255 : 0"/>
+<Transform target="x" value="[CONFIGURATION.date_pos] == &quot;left&quot; ? 10 : ([CONFIGURATION.date_pos] == &quot;right&quot; ? 310 : ([CONFIGURATION.date_pos] == &quot;top&quot; ? 180 : ([CONFIGURATION.date_pos] == &quot;bottom&quot; ? 180 : -200)))"/>
+<Transform target="y" value="[CONFIGURATION.date_pos] == &quot;left&quot; ? 180 : ([CONFIGURATION.date_pos] == &quot;right&quot; ? 180 : ([CONFIGURATION.date_pos] == &quot;top&quot; ? 40 : ([CONFIGURATION.date_pos] == &quot;bottom&quot; ? 320 : -200)))"/>
 <Group x="0" y="0" width="90" height="90" name="Wochentag&amp;Tag_eb46" alpha="255">
 <PartText x="0" y="0" width="90" height="90" name="Wochtag&amp;Tag_bf14" tintColor="#fff7f9ef" alpha="255">
 <Launch target="CALENDAR"/>
