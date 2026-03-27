@@ -3,6 +3,9 @@ build/
 out/
 .venv/
 
+# IDE
+.idea/
+
 # Original binaries (too large for git)
 *.aab
 *.apk
