@@ -1651,8 +1651,8 @@
 <Fill color="#ff000000"/>
 </Ellipse>
 </PartDraw>
-<PartImage x="8" y="0" width="45" height="45" name="Mondphase_3" alpha="255">
-<Transform target="x" value="8 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
+<PartImage x="12" y="0" width="45" height="45" name="Mondphase_3" alpha="255">
+<Transform target="x" value="12 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
 <Image resource="wfs_adjustmentcolor_1743430067815_45931d69_4add_4ee4_96ff_a6130f251353"/>
 </PartImage>
 <!-- Phase 4: Vollmond (kein Overlay) -->
@@ -1663,8 +1663,8 @@
 <Fill color="#ff000000"/>
 </Ellipse>
 </PartDraw>
-<PartImage x="-8" y="0" width="45" height="45" name="Mondphase_5" alpha="255">
-<Transform target="x" value="-8 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
+<PartImage x="-12" y="0" width="45" height="45" name="Mondphase_5" alpha="255">
+<Transform target="x" value="-12 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
 <Image resource="wfs_adjustmentcolor_1743430067815_45931d69_4add_4ee4_96ff_a6130f251353"/>
 </PartImage>
 <!-- Phase 6: Letztes Viertel (dunkles Rechteck verdeckt rechte Haelfte) -->
