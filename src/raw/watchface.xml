@@ -1644,28 +1644,16 @@
 <Fill color="#ff000000"/>
 </Rectangle>
 </PartDraw>
-<!-- Phase 3: Zunehmend fast voll (schwarzer Kreis + nach rechts verschobene Textur = konvexer Terminator) -->
-<PartDraw x="0" y="0" width="45" height="45" name="Mondphase_3_bg" alpha="255">
+<!-- Phase 3: Zunehmend fast voll (PNG-Maske mit korrektem elliptischem Terminator) -->
+<PartImage x="0" y="0" width="45" height="45" name="Mondphase_3" alpha="255">
 <Transform target="x" value="0 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
-<Ellipse x="0" y="0" width="45" height="45">
-<Fill color="#ff000000"/>
-</Ellipse>
-</PartDraw>
-<PartImage x="12" y="0" width="45" height="45" name="Mondphase_3" alpha="255">
-<Transform target="x" value="12 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
-<Image resource="wfs_adjustmentcolor_1743430067815_45931d69_4add_4ee4_96ff_a6130f251353"/>
+<Image resource="moon_mask_gibbous_wax"/>
 </PartImage>
 <!-- Phase 4: Vollmond (kein Overlay) -->
-<!-- Phase 5: Abnehmend fast voll (schwarzer Kreis + nach links verschobene Textur = konvexer Terminator) -->
-<PartDraw x="0" y="0" width="45" height="45" name="Mondphase_5_bg" alpha="255">
+<!-- Phase 5: Abnehmend fast voll (PNG-Maske mit korrektem elliptischem Terminator) -->
+<PartImage x="0" y="0" width="45" height="45" name="Mondphase_5" alpha="255">
 <Transform target="x" value="0 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
-<Ellipse x="0" y="0" width="45" height="45">
-<Fill color="#ff000000"/>
-</Ellipse>
-</PartDraw>
-<PartImage x="-12" y="0" width="45" height="45" name="Mondphase_5" alpha="255">
-<Transform target="x" value="-12 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
-<Image resource="wfs_adjustmentcolor_1743430067815_45931d69_4add_4ee4_96ff_a6130f251353"/>
+<Image resource="moon_mask_gibbous_wan"/>
 </PartImage>
 <!-- Phase 6: Letztes Viertel (dunkles Rechteck verdeckt rechte Haelfte) -->
 <PartDraw x="22" y="0" width="23" height="46" name="Mondphase_6" alpha="255">
