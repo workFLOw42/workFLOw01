@@ -1644,21 +1644,29 @@
 <Fill color="#ff000000"/>
 </Rectangle>
 </PartDraw>
-<!-- Phase 3: Zunehmend fast voll (dunkler Kreis weit links, kleine dunkle Sichel am linken Rand) -->
-<PartDraw x="-35" y="0" width="45" height="45" name="Mondphase_3" alpha="255">
-<Transform target="x" value="-35 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
+<!-- Phase 3: Zunehmend fast voll (schwarzer Kreis + nach rechts verschobene Textur = konvexer Terminator) -->
+<PartDraw x="0" y="0" width="45" height="45" name="Mondphase_3_bg" alpha="255">
+<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
 <Ellipse x="0" y="0" width="45" height="45">
 <Fill color="#ff000000"/>
 </Ellipse>
 </PartDraw>
+<PartImage x="8" y="0" width="45" height="45" name="Mondphase_3" alpha="255">
+<Transform target="x" value="8 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
+<Image resource="wfs_adjustmentcolor_1743430067815_45931d69_4add_4ee4_96ff_a6130f251353"/>
+</PartImage>
 <!-- Phase 4: Vollmond (kein Overlay) -->
-<!-- Phase 5: Abnehmend fast voll (dunkler Kreis weit rechts, kleine dunkle Sichel am rechten Rand) -->
-<PartDraw x="35" y="0" width="45" height="45" name="Mondphase_5" alpha="255">
-<Transform target="x" value="35 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
+<!-- Phase 5: Abnehmend fast voll (schwarzer Kreis + nach links verschobene Textur = konvexer Terminator) -->
+<PartDraw x="0" y="0" width="45" height="45" name="Mondphase_5_bg" alpha="255">
+<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
 <Ellipse x="0" y="0" width="45" height="45">
 <Fill color="#ff000000"/>
 </Ellipse>
 </PartDraw>
+<PartImage x="-8" y="0" width="45" height="45" name="Mondphase_5" alpha="255">
+<Transform target="x" value="-8 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
+<Image resource="wfs_adjustmentcolor_1743430067815_45931d69_4add_4ee4_96ff_a6130f251353"/>
+</PartImage>
 <!-- Phase 6: Letztes Viertel (dunkles Rechteck verdeckt rechte Haelfte) -->
 <PartDraw x="22" y="0" width="23" height="46" name="Mondphase_6" alpha="255">
 <Transform target="x" value="22 + ([MOON_PHASE_TYPE]==6 ? 0 : -100)"/>

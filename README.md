@@ -10,12 +10,6 @@ Analog watchface for Wear OS with moon phases and customizable hand colors.
   <img src="assets/screenshots/workFLOw01_20260320.png" alt="Screenshot" width="300"/>
 </p>
 
-## Beta Testing
-
-We're looking for testers to help improve workFLOw 01! Join the closed beta — just a Google account, no watch needed:
-
-[Become a tester on Google Play](https://play.google.com/apps/testing/com.watchfacestudio.workFLOw)
-
 ## Features
 
 - **Analog clock** with hour, minute, and second hands
