@@ -1625,46 +1625,46 @@
 </PartImage>
 <!-- Phase 0: Neumond mit Corona (Overlay 41x41 = 2px Rand sichtbar) -->
 <PartDraw x="2" y="2" width="41" height="41" name="Mondphase_0" alpha="255">
-<Transform target="x" value="2 + ([MOON_PHASE_TYPE]==0 ? 0 : -100)"/>
+<Transform target="x" value="2 + ([MOON_PHASE_TYPE]==0 ? 0 : -1000)"/>
 <Ellipse x="0" y="0" width="41" height="41">
 <Fill color="#ff000000"/>
 </Ellipse>
 </PartDraw>
 <!-- Phase 1: Zunehmende Sichel (dunkler Kreis nach links verschoben, rechte Sichel sichtbar) -->
 <PartDraw x="-8" y="0" width="45" height="45" name="Mondphase_1" alpha="255">
-<Transform target="x" value="-8 + ([MOON_PHASE_TYPE]==1 ? 0 : -100)"/>
+<Transform target="x" value="-8 + ([MOON_PHASE_TYPE]==1 ? 0 : -1000)"/>
 <Ellipse x="0" y="0" width="45" height="45">
 <Fill color="#ff000000"/>
 </Ellipse>
 </PartDraw>
 <!-- Phase 2: Erstes Viertel (dunkles Rechteck verdeckt linke Haelfte) -->
 <PartDraw x="0" y="0" width="23" height="46" name="Mondphase_2" alpha="255">
-<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==2 ? 0 : -100)"/>
+<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==2 ? 0 : -1000)"/>
 <Rectangle x="0" y="0" width="23" height="46">
 <Fill color="#ff000000"/>
 </Rectangle>
 </PartDraw>
 <!-- Phase 3: Zunehmend fast voll (PNG-Maske mit korrektem elliptischem Terminator) -->
 <PartImage x="0" y="0" width="45" height="45" name="Mondphase_3" alpha="255">
-<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==3 ? 0 : -100)"/>
+<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==3 ? 0 : -1000)"/>
 <Image resource="moon_mask_gibbous_wax"/>
 </PartImage>
 <!-- Phase 4: Vollmond (kein Overlay) -->
 <!-- Phase 5: Abnehmend fast voll (PNG-Maske mit korrektem elliptischem Terminator) -->
 <PartImage x="0" y="0" width="45" height="45" name="Mondphase_5" alpha="255">
-<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==5 ? 0 : -100)"/>
+<Transform target="x" value="0 + ([MOON_PHASE_TYPE]==5 ? 0 : -1000)"/>
 <Image resource="moon_mask_gibbous_wan"/>
 </PartImage>
 <!-- Phase 6: Letztes Viertel (dunkles Rechteck verdeckt rechte Haelfte) -->
 <PartDraw x="22" y="0" width="23" height="46" name="Mondphase_6" alpha="255">
-<Transform target="x" value="22 + ([MOON_PHASE_TYPE]==6 ? 0 : -100)"/>
+<Transform target="x" value="22 + ([MOON_PHASE_TYPE]==6 ? 0 : -1000)"/>
 <Rectangle x="0" y="0" width="23" height="46">
 <Fill color="#ff000000"/>
 </Rectangle>
 </PartDraw>
 <!-- Phase 7: Abnehmende Sichel (dunkler Kreis nach rechts verschoben, linke Sichel sichtbar) -->
 <PartDraw x="8" y="0" width="45" height="45" name="Mondphase_7" alpha="255">
-<Transform target="x" value="8 + ([MOON_PHASE_TYPE]==7 ? 0 : -100)"/>
+<Transform target="x" value="8 + ([MOON_PHASE_TYPE]==7 ? 0 : -1000)"/>
 <Ellipse x="0" y="0" width="45" height="45">
 <Fill color="#ff000000"/>
 </Ellipse>

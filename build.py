@@ -143,8 +143,8 @@ def main():
          "--manifest", os.path.join(SRC, "AndroidManifest.xml"),
          "--min-sdk-version", "34",
          "--target-sdk-version", "36",
-         "--version-code", "10000011",
-         "--version-name", "1.3.6",
+         "--version-code", "10000012",
+         "--version-name", "1.3.7",
          ] + flat_files)
 
     # Step 3: Repackage as AAB
@@ -240,7 +240,7 @@ def main():
     print(f"Output: {final_aab}")
     print(f"Work dir: {WORK}")
     print(f"Size: {size:,} bytes")
-    print(f"Version: 1.3.6 (10000011)")
+    print(f"Version: 1.3.7 (10000012)")
     print(f"\nUpload this file to Google Play Console.")
 
 

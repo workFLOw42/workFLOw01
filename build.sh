@@ -47,8 +47,8 @@ echo "[2/5] Linking APK..."
     --manifest "$SRC/AndroidManifest.xml" \
     --min-sdk-version 34 \
     --target-sdk-version 36 \
-    --version-code 10000011 \
-    --version-name "1.3.6" \
+    --version-code 10000012 \
+    --version-name "1.3.7" \
     "$BUILD/compiled/"*.flat 2>&1
 
 echo "[3/5] Repackaging as AAB..."
