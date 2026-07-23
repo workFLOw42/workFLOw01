@@ -6,12 +6,13 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import zipfile
 
 # Paths
 SDK = r"c:\Users\flori\AppData\Local\Android\Sdk"
-AAPT2 = os.path.join(SDK, "build-tools", "34.0.0", "aapt2.exe")
-ANDROID_JAR = os.path.join(SDK, "platforms", "android-34", "android.jar")
+AAPT2 = os.path.join(SDK, "build-tools", "36.0.0", "aapt2.exe")
+ANDROID_JAR = os.path.join(SDK, "platforms", "android-36", "android.jar")
 JARSIGNER = r"c:\Program Files\Android\Android Studio\jbr\bin\jarsigner.exe"
 KEYSTORE = r"c:\Users\flori\WatchFaceStudio\keystore\keystore.jks"
 KEY_ALIAS = "key0"
@@ -19,8 +20,20 @@ KEY_PASS = "Flo61215"
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(SCRIPT_DIR, "src")
-BUILD = os.path.join(SCRIPT_DIR, "build")
-OUT = os.path.join(SCRIPT_DIR, "out")
+
+# The project directory is synced by Google Drive, which locks directory
+# creation and causes intermittent WinError 2/5. To avoid this, all build
+# artifacts are created in a local TEMP working directory and only the final
+# signed AAB is copied back into the project's "out" folder.
+WORK = os.path.join(tempfile.gettempdir(), "workFLOw_build")
+BUILD = os.path.join(WORK, "build")
+OUT = os.path.join(WORK, "out")
+
+# Final destination for the signed AAB. The project's "out" subfolder cannot
+# be created because Google Drive locks directory creation in the synced
+# project tree, so the finished AAB is written to the project root instead
+# (where the previous AAB already lives). Copying a single file works fine.
+FINAL_OUT = SCRIPT_DIR
 
 
 def run(cmd, **kwargs):
@@ -33,6 +46,31 @@ def run(cmd, **kwargs):
         print(f"ERROR: {result.stderr.strip()}")
         sys.exit(1)
     return result
+
+
+import time
+
+
+def ensure_dir(path):
+    """Create a directory, working around Google Drive locking the synced
+    project folder (where os.makedirs may raise WinError 2/5)."""
+    if os.path.isdir(path):
+        return
+    last_err = None
+    for _ in range(5):
+        try:
+            os.makedirs(path, exist_ok=True)
+            return
+        except OSError as e:
+            last_err = e
+            # Fall back to the OS mkdir which succeeds on Drive folders.
+            subprocess.run(["cmd", "/c", "mkdir", path],
+                           capture_output=True, text=True)
+            if os.path.isdir(path):
+                return
+            time.sleep(1)
+    if not os.path.isdir(path):
+        raise last_err
 
 
 def main():
@@ -104,9 +142,9 @@ def main():
          "-I", ANDROID_JAR,
          "--manifest", os.path.join(SRC, "AndroidManifest.xml"),
          "--min-sdk-version", "34",
-         "--target-sdk-version", "34",
-         "--version-code", "10000009",
-         "--version-name", "1.3.4",
+         "--target-sdk-version", "36",
+         "--version-code", "10000011",
+         "--version-name", "1.3.6",
          ] + flat_files)
 
     # Step 3: Repackage as AAB
@@ -167,10 +205,42 @@ def main():
     print(result.stdout.strip())
 
     size = os.path.getsize(signed_aab)
+
+    # Copy the finished AAB back into the synced project folder.
+    #
+    # IMPORTANT: The project folder is synced by Google Drive. Python's
+    # shutil.copy2 and 'cmd copy' can silently FAIL to overwrite an existing,
+    # Drive-locked file (reporting success while the old file remains). Only
+    # PowerShell's 'Copy-Item -Force' reliably overwrites it, so we use that
+    # and then VERIFY the destination size matches the freshly built AAB.
+    final_aab = os.path.join(FINAL_OUT, "com.watchfacestudio.workFLOw.aab")
+    ensure_dir(FINAL_OUT)
+
+    copied = False
+    for _ in range(5):
+        subprocess.run(
+            ["powershell", "-NoProfile", "-Command",
+             "Copy-Item -LiteralPath", f"'{signed_aab}'",
+             "-Destination", f"'{final_aab}'", "-Force"],
+            capture_output=True, text=True)
+        # Verify the copy actually landed (same size as the source).
+        if (os.path.exists(final_aab)
+                and os.path.getsize(final_aab) == size):
+            copied = True
+            break
+        time.sleep(1)
+
+    if not copied:
+        print("WARNING: could not reliably write the AAB to the project "
+              "folder (Google Drive may be locking it).")
+        print(f"The signed AAB is available here instead:\n  {signed_aab}")
+        final_aab = signed_aab
+
     print(f"\n=== Build complete ===")
-    print(f"Output: {signed_aab}")
+    print(f"Output: {final_aab}")
+    print(f"Work dir: {WORK}")
     print(f"Size: {size:,} bytes")
-    print(f"Version: 1.3.4 (10000009)")
+    print(f"Version: 1.3.6 (10000011)")
     print(f"\nUpload this file to Google Play Console.")
 
 

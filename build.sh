@@ -6,9 +6,9 @@ set -e
 
 # Paths
 SDK="/c/Users/flori/AppData/Local/Android/Sdk"
-AAPT2="$SDK/build-tools/34.0.0/aapt2.exe"
-ZIPALIGN="$SDK/build-tools/34.0.0/zipalign.exe"
-ANDROID_JAR="$SDK/platforms/android-34/android.jar"
+AAPT2="$SDK/build-tools/36.0.0/aapt2.exe"
+ZIPALIGN="$SDK/build-tools/36.0.0/zipalign.exe"
+ANDROID_JAR="$SDK/platforms/android-36/android.jar"
 JARSIGNER="/c/Program Files/Android/Android Studio/jbr/bin/jarsigner.exe"
 KEYSTORE="/c/Users/flori/AppData/Local/Programs/WatchFaceStudio/tools/common/key/debug.keystore"
 KEY_ALIAS="androiddebugkey"
@@ -46,9 +46,9 @@ echo "[2/5] Linking APK..."
     -I "$ANDROID_JAR" \
     --manifest "$SRC/AndroidManifest.xml" \
     --min-sdk-version 34 \
-    --target-sdk-version 34 \
-    --version-code 10000003 \
-    --version-name "1.1.0" \
+    --target-sdk-version 36 \
+    --version-code 10000011 \
+    --version-name "1.3.6" \
     "$BUILD/compiled/"*.flat 2>&1
 
 echo "[3/5] Repackaging as AAB..."
