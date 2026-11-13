@@ -1,12 +1,18 @@
 """Build script for workFLOw watchface AAB.
 
 Usage: python build.py
+
+Signing passwords are never stored in this file. They are read from the
+environment variables WF_STORE_PASS and WF_KEY_PASS (WF_KEY_PASS defaults to
+WF_STORE_PASS). If they are not set, you are prompted interactively.
 """
+import getpass
 import os
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 
 # Paths
@@ -16,7 +22,6 @@ ANDROID_JAR = os.path.join(SDK, "platforms", "android-36", "android.jar")
 JARSIGNER = r"c:\Program Files\Android\Android Studio\jbr\bin\jarsigner.exe"
 KEYSTORE = r"c:\Users\flori\WatchFaceStudio\keystore\keystore.jks"
 KEY_ALIAS = "key0"
-KEY_PASS = "Flo61215"
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(SCRIPT_DIR, "src")
@@ -48,7 +53,27 @@ def run(cmd, **kwargs):
     return result
 
 
-import time
+def get_signing_env():
+    """Return an environment dict containing WF_STORE_PASS / WF_KEY_PASS.
+
+    Passwords come from the environment or an interactive prompt. They are
+    handed to jarsigner via '-storepass:env' / '-keypass:env', so they never
+    appear on the command line, in the process list or in the build log.
+    """
+    env = os.environ.copy()
+    store_pass = env.get("WF_STORE_PASS")
+    if not store_pass:
+        store_pass = getpass.getpass("Keystore password: ")
+    key_pass = env.get("WF_KEY_PASS")
+    if not key_pass:
+        key_pass = getpass.getpass(
+            "Key password (Enter = same as keystore): ") or store_pass
+    if not store_pass:
+        print("ERROR: no keystore password provided.")
+        sys.exit(1)
+    env["WF_STORE_PASS"] = store_pass
+    env["WF_KEY_PASS"] = key_pass
+    return env
 
 
 def ensure_dir(path):
@@ -75,6 +100,9 @@ def ensure_dir(path):
 
 def main():
     print("=== workFLOw Watchface Build ===\n")
+
+    # Ask for signing passwords up front so the build doesn't stop midway.
+    signing_env = get_signing_env()
 
     # Clean and create dirs
     for d in [BUILD, OUT]:
@@ -192,11 +220,12 @@ def main():
     signed_aab = os.path.join(OUT, "com.watchfacestudio.workFLOw.aab")
     run([JARSIGNER,
          "-keystore", KEYSTORE,
-         "-storepass", KEY_PASS,
-         "-keypass", KEY_PASS,
+         "-storepass:env", "WF_STORE_PASS",
+         "-keypass:env", "WF_KEY_PASS",
          "-signedjar", signed_aab,
          unsigned_aab,
-         KEY_ALIAS])
+         KEY_ALIAS],
+        env=signing_env)
 
     # Verify
     result = subprocess.run(

@@ -64,9 +64,14 @@ The moon uses a procedural overlay system (no PNG masks):
 - Signing keystore
 
 ### Build
-```bash
+```powershell
+# Optional: provide signing passwords via environment (otherwise you are prompted)
+$env:WF_STORE_PASS = "..."
+$env:WF_KEY_PASS   = "..."   # optional, defaults to WF_STORE_PASS
 python build.py
 ```
+
+Passwords are passed to `jarsigner` via `-storepass:env` / `-keypass:env` and are never stored in the repository.
 
 Output: `out/com.watchfacestudio.workFLOw.aab`
 
