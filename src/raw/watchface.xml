@@ -2,11 +2,11 @@
 <Metadata key="CLOCK_TYPE" value="ANALOG"/>
 <UserConfigurations>
 <ListConfiguration id="moon_pos" displayName="@string/moon_pos_label" defaultValue="left" screenReaderText="@string/moon_pos_desc" icon="@drawable/ic_pos_left">
-<ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left"/>
-<ListOption id="right" displayName="@string/pos_right" icon="@drawable/ic_pos_right"/>
-<ListOption id="top" displayName="@string/pos_top" icon="@drawable/ic_pos_top"/>
-<ListOption id="bottom" displayName="@string/pos_bottom" icon="@drawable/ic_pos_bottom"/>
-<ListOption id="off" displayName="@string/pos_off" icon="@drawable/ic_pos_off"/>
+<ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left" complicationSlotIds="0 1"/>
+<ListOption id="right" displayName="@string/pos_right" icon="@drawable/ic_pos_right" complicationSlotIds="0 1"/>
+<ListOption id="top" displayName="@string/pos_top" icon="@drawable/ic_pos_top" complicationSlotIds="0"/>
+<ListOption id="bottom" displayName="@string/pos_bottom" icon="@drawable/ic_pos_bottom" complicationSlotIds="1"/>
+<ListOption id="off" displayName="@string/pos_off" icon="@drawable/ic_pos_off" complicationSlotIds="0 1"/>
 </ListConfiguration>
 <ListConfiguration id="date_pos" displayName="@string/date_pos_label" defaultValue="right" screenReaderText="@string/date_pos_desc" icon="@drawable/ic_pos_right">
 <ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left"/>
@@ -584,7 +584,7 @@
 </Default>
 </Condition>
 </Group>
-<PartText x="16" y="31" width="59" height="27" name="Text_3bff" alpha="255">
+<PartText x="16" y="31" width="59" height="27" name="Text_6fa7" alpha="255">
 <Text align="CENTER" ellipsis="TRUE">
 <Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
 <Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
@@ -594,7 +594,7 @@
 </PartText>
 </Compare>
 <Default>
-<Group x="0" y="0" width="87" height="87" name="ProgressBar_3bff" alpha="255">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_9483" alpha="255">
 <Condition>
 <Expressions>
 <Expression name="GOAL_PROGRESS_COLORS">
@@ -602,18 +602,18 @@
 </Expression>
 </Expressions>
 <Compare expression="GOAL_PROGRESS_COLORS">
-<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_3bff" alpha="26">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_9483" alpha="26">
 <Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
 <WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
 </Arc>
 </PartDraw>
-<Group x="0" y="0" width="87" height="87" name="ProgressBar_3bff_MASK">
-<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_3bff">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_9483_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_9483">
 <Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
 <WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
 </Arc>
 </PartDraw>
-<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_3bff" renderMode="MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_9483" renderMode="MASK">
 <Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
 <Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
 <Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
@@ -622,18 +622,18 @@
 </Group>
 </Compare>
 <Default>
-<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_3bff" alpha="26">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_9483" alpha="26">
 <Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
 <WeightedStroke colors="#1affffff" cap="ROUND" thickness="8"/>
 </Arc>
 </PartDraw>
-<Group x="0" y="0" width="87" height="87" name="ProgressBar_3bff_MASK">
-<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_3bff">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_9483_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_9483">
 <Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
 <WeightedStroke colors="#ffffffff" cap="ROUND" thickness="8"/>
 </Arc>
 </PartDraw>
-<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_3bff" renderMode="MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_9483" renderMode="MASK">
 <Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
 <Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
 <Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
@@ -649,10 +649,865 @@
 <Complication type="WEIGHTED_ELEMENTS">
 <Condition>
 <Expressions>
+<Expression name="rangeIconTextTitleWeightedElements">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && [COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
+<Expression name="rangeIconTextWeightedElements">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && ([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
+</Expression>
+<Expression name="rangeIconWeightedElements">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null]]>
+</Expression>
+<Expression name="rangeTextTitleWeightedElements">
+<![CDATA[[COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
 <Expression name="rangeTextWeightedElements">
-<![CDATA[[COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null]]>
+<![CDATA[([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
 </Expression>
 </Expressions>
+<Compare expression="rangeIconTextTitleWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_fce8" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_fce8">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartImage x="34" y="16" width="22" height="22" name="Icon_97a1" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="18" y="38" width="55" height="22" name="Text_1a9c" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="61" width="53" height="14" name="Title_0f6d" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIconTextWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_64a6" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_64a6">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartImage x="34" y="22" width="22" height="22" name="Icon_32eb" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="16" y="43" width="59" height="27" name="Text_88d0" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIconWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_1bb7" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_1bb7">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartImage x="22" y="22" width="47" height="47" name="Icon_5014" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+</Compare>
+<Compare expression="rangeTextTitleWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_d78c" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_d78c">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartText x="16" y="22" width="59" height="27" name="Text_ce05" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="51" width="53" height="18" name="Title_e6c6" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeTextWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_3bff" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_3bff">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartText x="16" y="31" width="59" height="27" name="Text_6fa7" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Default>
+<Group x="0" y="0" width="87" height="87" name="ProgressBar_9483" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBar_9483">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Default>
+</Condition>
+</Complication>
+<Complication type="SMALL_IMAGE">
+<PartImage x="0" y="0" width="90" height="90" name="Image_c83e" alpha="255">
+<Image resource="[COMPLICATION.SMALL_IMAGE]"/>
+</PartImage>
+</Complication>
+<Complication type="MONOCHROMATIC_IMAGE">
+<PartImage x="22" y="22" width="47" height="47" name="Icon_d42c" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+</Complication>
+<Complication type="EMPTY"/>
+</ComplicationSlot>
+<ComplicationSlot slotId="1" displayName="@string/slot_top" isCustomizable="TRUE" supportedTypes="SHORT_TEXT RANGED_VALUE GOAL_PROGRESS WEIGHTED_ELEMENTS SMALL_IMAGE MONOCHROMATIC_IMAGE" pivotY="2.0556" x="180" y="40" width="90" height="90" name="Feldoben_1" alpha="255">
+<Variant mode="AMBIENT" target="alpha" value="0"/>
+<DefaultProviderPolicy defaultSystemProvider="SUNRISE_SUNSET" defaultSystemProviderType="SHORT_TEXT"/>
+<BoundingOval x="0" y="0" width="90" height="90"/>
+<Complication type="SHORT_TEXT">
+<Condition>
+<Expressions>
+<Expression name="shortText">
+<![CDATA[[COMPLICATION.TITLE] == null && [COMPLICATION.MONOCHROMATIC_IMAGE] == null]]>
+</Expression>
+<Expression name="shortTextIcon">
+<![CDATA[[COMPLICATION.TITLE] == null && [COMPLICATION.MONOCHROMATIC_IMAGE] != null]]>
+</Expression>
+<Expression name="shortTextTitle">
+<![CDATA[[COMPLICATION.TITLE] != null && [COMPLICATION.MONOCHROMATIC_IMAGE] == null]]>
+</Expression>
+</Expressions>
+<Compare expression="shortText">
+<PartText x="9" y="31" width="72" height="27" name="Textcopy_583a" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="20" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="shortTextIcon">
+<Group x="34" y="20" width="22" height="22" name="Iconoben_d80a" tintColor="#fff7f9ef" alpha="255">
+<PartImage x="0" y="0" width="22" height="22" name="Iconoben_d80a">
+<ImageFilters>
+<HsbFilter hueRotate="0" saturate="0" brightness="1"/>
+</ImageFilters>
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+</Group>
+<PartText x="10" y="41" width="72" height="27" name="Textoben_5a00" tintColor="#fff7f9ef" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="24" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="shortTextTitle">
+<PartText x="8" y="22" width="74" height="27" name="Textcopy_798b" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="20" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="8" y="51" width="74" height="18" name="Titlecopy_9eed" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Default>
+<PartImage x="34" y="10" width="22" height="22" name="Iconcopy_f887" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="4" y="33" width="82" height="27" name="Textcopy_df84" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="20" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="63" width="53" height="18" name="Titlecopy_156e" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Default>
+</Condition>
+</Complication>
+<Complication type="RANGED_VALUE">
+<Condition>
+<Expressions>
+<Expression name="rangeIconTextTitle">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && [COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
+<Expression name="rangeIconText">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && ([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
+</Expression>
+<Expression name="rangeIcon">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null]]>
+</Expression>
+<Expression name="rangeTextTitle">
+<![CDATA[[COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
+<Expression name="rangeText">
+<![CDATA[([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
+</Expression>
+</Expressions>
+<Compare expression="rangeIconTextTitle">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e" alpha="255">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Stroke color="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX]) - ([COMPLICATION.RANGED_VALUE_MIN]))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartImage x="34" y="16" width="22" height="22" name="Iconcopy_ed12" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="18" y="38" width="55" height="22" name="Textcopy_4121" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="61" width="53" height="14" name="Titlecopy_49c0" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIconText">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95" alpha="255">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Stroke color="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX]) - ([COMPLICATION.RANGED_VALUE_MIN]))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartImage x="34" y="22" width="22" height="22" name="Iconcopy_fc09" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="16" y="43" width="59" height="27" name="Textcopy_8830" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIcon">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b" alpha="255">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Stroke color="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX]) - ([COMPLICATION.RANGED_VALUE_MIN]))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartImage x="22" y="22" width="47" height="47" name="Iconcopy_efcd" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+</Compare>
+<Compare expression="rangeTextTitle">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675" alpha="255">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Stroke color="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX]) - ([COMPLICATION.RANGED_VALUE_MIN]))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartText x="16" y="22" width="59" height="27" name="Textcopy_9ac6" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="51" width="53" height="18" name="Titlecopy_cd95" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeText">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be" alpha="255">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Stroke color="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX]) - ([COMPLICATION.RANGED_VALUE_MIN]))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartText x="16" y="31" width="59" height="27" name="Textcopy_f3db" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Default>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_8cca" alpha="255">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Stroke color="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX]) - ([COMPLICATION.RANGED_VALUE_MIN]))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Default>
+</Condition>
+</Complication>
+<Complication type="GOAL_PROGRESS">
+<Condition>
+<Expressions>
+<Expression name="rangeIconTextTitleGoalProgress">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && [COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
+<Expression name="rangeIconTextGoalProgress">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && ([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
+</Expression>
+<Expression name="rangeIconGoalProgress">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null]]>
+</Expression>
+<Expression name="rangeTextTitleGoalProgress">
+<![CDATA[[COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
+<Expression name="rangeTextGoalProgress">
+<![CDATA[([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
+</Expression>
+</Expressions>
+<Compare expression="rangeIconTextTitleGoalProgress">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_605e" alpha="255">
+<Condition>
+<Expressions>
+<Expression name="GOAL_PROGRESS_COLORS">
+<![CDATA[[COMPLICATION.GOAL_PROGRESS_COLORS] != null]]>
+</Expression>
+</Expressions>
+<Compare expression="GOAL_PROGRESS_COLORS">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_605e_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Compare>
+<Default>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_605e_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Default>
+</Condition>
+</Group>
+<PartImage x="34" y="16" width="22" height="22" name="Iconcopy_ed12" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="18" y="38" width="55" height="22" name="Textcopy_4121" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="61" width="53" height="14" name="Titlecopy_49c0" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIconTextGoalProgress">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_9c95" alpha="255">
+<Condition>
+<Expressions>
+<Expression name="GOAL_PROGRESS_COLORS">
+<![CDATA[[COMPLICATION.GOAL_PROGRESS_COLORS] != null]]>
+</Expression>
+</Expressions>
+<Compare expression="GOAL_PROGRESS_COLORS">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_9c95_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Compare>
+<Default>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_9c95_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Default>
+</Condition>
+</Group>
+<PartImage x="34" y="22" width="22" height="22" name="Iconcopy_fc09" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="16" y="43" width="59" height="27" name="Textcopy_8830" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIconGoalProgress">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_447b" alpha="255">
+<Condition>
+<Expressions>
+<Expression name="GOAL_PROGRESS_COLORS">
+<![CDATA[[COMPLICATION.GOAL_PROGRESS_COLORS] != null]]>
+</Expression>
+</Expressions>
+<Compare expression="GOAL_PROGRESS_COLORS">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_447b_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Compare>
+<Default>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_447b_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Default>
+</Condition>
+</Group>
+<PartImage x="22" y="22" width="47" height="47" name="Iconcopy_efcd" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+</Compare>
+<Compare expression="rangeTextTitleGoalProgress">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c675" alpha="255">
+<Condition>
+<Expressions>
+<Expression name="GOAL_PROGRESS_COLORS">
+<![CDATA[[COMPLICATION.GOAL_PROGRESS_COLORS] != null]]>
+</Expression>
+</Expressions>
+<Compare expression="GOAL_PROGRESS_COLORS">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c675_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Compare>
+<Default>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c675_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Default>
+</Condition>
+</Group>
+<PartText x="16" y="22" width="59" height="27" name="Textcopy_9ac6" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="51" width="53" height="18" name="Titlecopy_cd95" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeTextGoalProgress">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c7be" alpha="255">
+<Condition>
+<Expressions>
+<Expression name="GOAL_PROGRESS_COLORS">
+<![CDATA[[COMPLICATION.GOAL_PROGRESS_COLORS] != null]]>
+</Expression>
+</Expressions>
+<Compare expression="GOAL_PROGRESS_COLORS">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c7be_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Compare>
+<Default>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c7be_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Default>
+</Condition>
+</Group>
+<PartText x="16" y="31" width="59" height="27" name="Textcopy_f3db" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Default>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_8cca" alpha="255">
+<Condition>
+<Expressions>
+<Expression name="GOAL_PROGRESS_COLORS">
+<![CDATA[[COMPLICATION.GOAL_PROGRESS_COLORS] != null]]>
+</Expression>
+</Expressions>
+<Compare expression="GOAL_PROGRESS_COLORS">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_8cca" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_8cca_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_8cca">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.GOAL_PROGRESS_COLORS]" interpolate="[COMPLICATION.GOAL_PROGRESS_COLOR_INTERPOLATE]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_8cca" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Compare>
+<Default>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_8cca" alpha="26">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#1affffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_8cca_MASK">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_8cca">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_8cca" renderMode="MASK">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="270" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<Transform target="endAngle" value="0 + (((clamp(([COMPLICATION.GOAL_PROGRESS_VALUE]), (0), ([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE])) - (0)) / (([COMPLICATION.GOAL_PROGRESS_TARGET_VALUE]) - (0))) * (360))"/>
+<Stroke color="#ffffffff" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+</Default>
+</Condition>
+</Group>
+</Default>
+</Condition>
+</Complication>
+<Complication type="WEIGHTED_ELEMENTS">
+<Condition>
+<Expressions>
+<Expression name="rangeIconTextTitleWeightedElements">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && [COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
+<Expression name="rangeIconTextWeightedElements">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && ([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
+</Expression>
+<Expression name="rangeIconWeightedElements">
+<![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null]]>
+</Expression>
+<Expression name="rangeTextTitleWeightedElements">
+<![CDATA[[COMPLICATION.TEXT] != null && [COMPLICATION.TITLE] != null]]>
+</Expression>
+<Expression name="rangeTextWeightedElements">
+<![CDATA[([COMPLICATION.TEXT] != null || [COMPLICATION.TITLE] != null)]]>
+</Expression>
+</Expressions>
+<Compare expression="rangeIconTextTitleWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_605e" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_605e">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartImage x="34" y="16" width="22" height="22" name="Iconcopy_ed12" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="18" y="38" width="55" height="22" name="Textcopy_4121" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="61" width="53" height="14" name="Titlecopy_49c0" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIconTextWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_9c95" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_9c95">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartImage x="34" y="22" width="22" height="22" name="Iconcopy_fc09" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+<PartText x="16" y="43" width="59" height="27" name="Textcopy_8830" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
+<Compare expression="rangeIconWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_447b" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_447b">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartImage x="22" y="22" width="47" height="47" name="Iconcopy_efcd" alpha="255">
+<Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+</PartImage>
+</Compare>
+<Compare expression="rangeTextTitleWeightedElements">
+<Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c675" alpha="255">
+<PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c675">
+<Arc direction="CLOCKWISE" startAngle="0" endAngle="359.999" centerX="42.0652" centerY="42.0652" width="76.1304" height="76.1304">
+<WeightedStroke colors="[COMPLICATION.WEIGHTED_ELEMENTS_COLORS]" weights="[COMPLICATION.WEIGHTED_ELEMENTS_WEIGHTS]" cap="ROUND" thickness="8"/>
+</Arc>
+</PartDraw>
+</Group>
+<PartText x="16" y="22" width="59" height="27" name="Textcopy_9ac6" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="16" weight="NORMAL" slant="NORMAL" color="#ffffffff">
+<Template>%s<Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+<PartText x="19" y="51" width="53" height="18" name="Titlecopy_cd95" alpha="255">
+<Text align="CENTER" ellipsis="TRUE">
+<Font family="SYNC_TO_DEVICE" size="12" weight="NORMAL" slant="NORMAL" color="#ffadadad">
+<Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+</Template>
+</Font>
+</Text>
+</PartText>
+</Compare>
 <Compare expression="rangeTextWeightedElements">
 <Group x="0" y="0" width="87" height="87" name="ProgressBarcopy_c7be" alpha="255">
 <PartDraw pivotX="0.5" x="3" y="3" width="84" height="84" name="ProgressBarcopy_c7be">
@@ -859,15 +1714,15 @@
 </Ellipse>
 </PartDraw>
 </Group>
-<!-- Wochentag & Tag (Position per ListConfiguration, Moon wins if positions match) -->
+<!-- Wochentag & Tag (Position per ListConfiguration) -->
 <Group x="310" y="180" width="90" height="90" name="Datum_toggle" alpha="255">
 <Transform target="x" value="[CONFIGURATION.date_pos] == &quot;left&quot; ? 10 : ([CONFIGURATION.date_pos] == &quot;right&quot; ? 310 : ([CONFIGURATION.date_pos] == &quot;top&quot; ? 180 : ([CONFIGURATION.date_pos] == &quot;bottom&quot; ? 180 : -200)))"/>
 <Transform target="y" value="[CONFIGURATION.date_pos] == &quot;left&quot; ? 180 : ([CONFIGURATION.date_pos] == &quot;right&quot; ? 180 : ([CONFIGURATION.date_pos] == &quot;top&quot; ? 40 : ([CONFIGURATION.date_pos] == &quot;bottom&quot; ? 320 : -200)))"/>
-<Transform target="alpha" value="[CONFIGURATION.moon_pos] == [CONFIGURATION.date_pos] ? 0 : 255"/>
 <Group x="0" y="0" width="90" height="90" name="Wochentag&amp;Tag_eb46" alpha="255">
 <PartText x="0" y="0" width="90" height="90" name="Wochtag&amp;Tag_bf14" tintColor="#fff7f9ef" alpha="255">
 <Launch target="CALENDAR"/>
 <Variant mode="AMBIENT" target="alpha" value="0"/>
+<Localization calendar="GREGORIAN" locales="de_DE"/>
 <Text align="CENTER" ellipsis="FALSE">
 <Font family="SYNC_TO_DEVICE" size="24" weight="ULTRA_BOLD" slant="NORMAL" color="#ffffffff">
 <Template>%s<Parameter expression="icuText(&quot;dE&quot;)"/>
