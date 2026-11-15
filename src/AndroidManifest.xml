@@ -18,7 +18,7 @@
 
         <property
             android:name="com.google.wear.watchface.format.version"
-            android:value="2" />
+            android:value="5" />
         <property
             android:name="com.google.wear.watchface.format.publisher"
             android:value="WatchFaceStudio-1.8.7" />

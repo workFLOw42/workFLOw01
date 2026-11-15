@@ -13,6 +13,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import xml.etree.ElementTree as ET
 import zipfile
 
 # Paths
@@ -34,10 +35,6 @@ WORK = os.path.join(tempfile.gettempdir(), "workFLOw_build")
 BUILD = os.path.join(WORK, "build")
 OUT = os.path.join(WORK, "out")
 
-# Final destination for the signed AAB. The project's "out" subfolder cannot
-# be created because Google Drive locks directory creation in the synced
-# project tree, so the finished AAB is written to the project root instead
-# (where the previous AAB already lives). Copying a single file works fine.
 FINAL_OUT = SCRIPT_DIR
 
 
@@ -54,12 +51,7 @@ def run(cmd, **kwargs):
 
 
 def get_signing_env():
-    """Return an environment dict containing WF_STORE_PASS / WF_KEY_PASS.
-
-    Passwords come from the environment or an interactive prompt. They are
-    handed to jarsigner via '-storepass:env' / '-keypass:env', so they never
-    appear on the command line, in the process list or in the build log.
-    """
+    """Return an environment dict containing WF_STORE_PASS / WF_KEY_PASS."""
     env = os.environ.copy()
     store_pass = env.get("WF_STORE_PASS")
     if not store_pass:
@@ -77,8 +69,7 @@ def get_signing_env():
 
 
 def ensure_dir(path):
-    """Create a directory, working around Google Drive locking the synced
-    project folder (where os.makedirs may raise WinError 2/5)."""
+    """Create a directory, working around Google Drive locking."""
     if os.path.isdir(path):
         return
     last_err = None
@@ -88,7 +79,6 @@ def ensure_dir(path):
             return
         except OSError as e:
             last_err = e
-            # Fall back to the OS mkdir which succeeds on Drive folders.
             subprocess.run(["cmd", "/c", "mkdir", path],
                            capture_output=True, text=True)
             if os.path.isdir(path):
@@ -101,20 +91,27 @@ def ensure_dir(path):
 def main():
     print("=== workFLOw Watchface Build ===\n")
 
-    # Ask for signing passwords up front so the build doesn't stop midway.
+    # Read version info from AndroidManifest.xml
+    manifest_path = os.path.join(SRC, "AndroidManifest.xml")
+    tree = ET.parse(manifest_path)
+    root = tree.getroot()
+    version_code = root.get(
+        "{http://schemas.android.com/apk/res/android}versionCode", "10000012")
+    version_name = root.get(
+        "{http://schemas.android.com/apk/res/android}versionName", "1.3.7")
+    print(f"Read version from manifest: {version_name} (code {version_code})")
+
+    # Ask for signing passwords up front
     signing_env = get_signing_env()
 
     # Clean and create dirs
     for d in [BUILD, OUT]:
         if os.path.exists(d):
-            # Windows: remove read-only attributes before deleting
-            for root, dirs, files in os.walk(d):
+            for root_dir, dirs, files in os.walk(d):
                 for f in files:
-                    fp = os.path.join(root, f)
-                    os.chmod(fp, 0o777)
+                    os.chmod(os.path.join(root_dir, f), 0o777)
                 for dd in dirs:
-                    dp = os.path.join(root, dd)
-                    os.chmod(dp, 0o777)
+                    os.chmod(os.path.join(root_dir, dd), 0o777)
             shutil.rmtree(d, ignore_errors=True)
     for d in [
         os.path.join(BUILD, "compiled"),
@@ -129,26 +126,22 @@ def main():
     print("[1/5] Compiling resources...")
     compiled_dir = os.path.join(BUILD, "compiled")
 
-    # Compile drawables
     for f in os.listdir(os.path.join(SRC, "drawable-nodpi-v4")):
         if f.endswith(".png"):
             run([AAPT2, "compile",
                  os.path.join(SRC, "drawable-nodpi-v4", f),
                  "-o", compiled_dir])
 
-    # Compile xml resources
     for f in os.listdir(os.path.join(SRC, "xml")):
         if f.endswith(".xml"):
             run([AAPT2, "compile",
                  os.path.join(SRC, "xml", f),
                  "-o", compiled_dir])
 
-    # Compile raw resource (watchface.xml)
     run([AAPT2, "compile",
          os.path.join(SRC, "raw", "watchface.xml"),
          "-o", compiled_dir])
 
-    # Compile values (strings) resources
     for values_dir in ["values", "values-de"]:
         vdir = os.path.join(SRC, values_dir)
         if os.path.isdir(vdir):
@@ -168,11 +161,11 @@ def main():
          "--proto-format",
          "-o", base_apk,
          "-I", ANDROID_JAR,
-         "--manifest", os.path.join(SRC, "AndroidManifest.xml"),
+         "--manifest", manifest_path,
          "--min-sdk-version", "34",
          "--target-sdk-version", "36",
-         "--version-code", "10000012",
-         "--version-name", "1.3.7",
+         "--version-code", version_code,
+         "--version-name", version_name,
          ] + flat_files)
 
     # Step 3: Repackage as AAB
@@ -180,38 +173,34 @@ def main():
     extract_dir = os.path.join(BUILD, "aab_extract")
     aab_dir = os.path.join(BUILD, "aab_struct")
 
-    # Extract the proto-format APK
     with zipfile.ZipFile(base_apk, "r") as z:
         z.extractall(extract_dir)
 
-    # Move manifest
     shutil.copy2(
         os.path.join(extract_dir, "AndroidManifest.xml"),
         os.path.join(aab_dir, "base", "manifest", "AndroidManifest.xml"))
 
-    # Move resources.pb
     shutil.copy2(
         os.path.join(extract_dir, "resources.pb"),
         os.path.join(aab_dir, "base", "resources.pb"))
 
-    # Move res directory
     src_res = os.path.join(extract_dir, "res")
     dst_res = os.path.join(aab_dir, "base", "res")
     if os.path.exists(src_res):
         shutil.copytree(src_res, dst_res, dirs_exist_ok=True)
 
-    # Copy BundleConfig.pb from original AAB
-    orig_aab = os.path.join(SCRIPT_DIR, "com.watchfacestudio.workFLOw.aab")
-    with zipfile.ZipFile(orig_aab, "r") as z:
-        z.extract("BundleConfig.pb", aab_dir)
+    # Generate BundleConfig.pb programmatically
+    bundle_config_path = os.path.join(aab_dir, "BundleConfig.pb")
+    with open(bundle_config_path, "wb") as f:
+        f.write(b'\x0a\x08\x0a\x04\x08\x01\x10\x01\x12\x00')
 
     # Step 4: Create AAB zip
     print("\n[4/5] Creating AAB archive...")
     unsigned_aab = os.path.join(BUILD, "unsigned.aab")
     with zipfile.ZipFile(unsigned_aab, "w", zipfile.ZIP_DEFLATED) as z:
-        for root, dirs, files in os.walk(aab_dir):
+        for root_dir, dirs, files in os.walk(aab_dir):
             for f in files:
-                filepath = os.path.join(root, f)
+                filepath = os.path.join(root_dir, f)
                 arcname = os.path.relpath(filepath, aab_dir)
                 z.write(filepath, arcname)
 
@@ -227,7 +216,6 @@ def main():
          KEY_ALIAS],
         env=signing_env)
 
-    # Verify
     result = subprocess.run(
         [JARSIGNER, "-verify", signed_aab],
         capture_output=True, text=True)
@@ -235,13 +223,6 @@ def main():
 
     size = os.path.getsize(signed_aab)
 
-    # Copy the finished AAB back into the synced project folder.
-    #
-    # IMPORTANT: The project folder is synced by Google Drive. Python's
-    # shutil.copy2 and 'cmd copy' can silently FAIL to overwrite an existing,
-    # Drive-locked file (reporting success while the old file remains). Only
-    # PowerShell's 'Copy-Item -Force' reliably overwrites it, so we use that
-    # and then VERIFY the destination size matches the freshly built AAB.
     final_aab = os.path.join(FINAL_OUT, "com.watchfacestudio.workFLOw.aab")
     ensure_dir(FINAL_OUT)
 
@@ -252,7 +233,6 @@ def main():
              "Copy-Item -LiteralPath", f"'{signed_aab}'",
              "-Destination", f"'{final_aab}'", "-Force"],
             capture_output=True, text=True)
-        # Verify the copy actually landed (same size as the source).
         if (os.path.exists(final_aab)
                 and os.path.getsize(final_aab) == size):
             copied = True
@@ -269,7 +249,7 @@ def main():
     print(f"Output: {final_aab}")
     print(f"Work dir: {WORK}")
     print(f"Size: {size:,} bytes")
-    print(f"Version: 1.3.7 (10000012)")
+    print(f"Version: {version_name} ({version_code})")
     print(f"\nUpload this file to Google Play Console.")
 
 
