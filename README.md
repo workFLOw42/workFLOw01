@@ -104,7 +104,7 @@ adb install com.watchfacestudio.workFLOw.apk
 ```
 src/
   AndroidManifest.xml          # App manifest (version, SDK, package)
-  raw/watchface.xml            # Main watchface definition (WFF v5)
+  raw/watchface.xml            # Main watchface definition (WFF v2)
   xml/                         # Wear OS config XMLs
   drawable-nodpi-v4/           # PNG assets (moon texture, previews)
   values/strings.xml           # English strings (default)
@@ -120,8 +120,8 @@ build.py                       # Build script
 
 ## Technical Details
 
-- **Watch Face Format**: Version 5 (needed for `complicationSlotIds` on `ListOption`)
-- **Min SDK**: 36 (Wear OS 6 / Android 16)
+- **Watch Face Format**: Version 2 (complication content under the moon is faded out via `[CONFIGURATION.moon_pos]`; the slot itself stays tappable)
+- **Min SDK**: 34 (Wear OS 5)
 - **Current version**: 1.4.0 (versionCode 10000013)
 - **Package**: `com.watchfacestudio.workFLOw`
 - **Canvas**: 450x450px, circular

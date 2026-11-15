@@ -23,7 +23,7 @@ Anpassbar:
 - Liegt die Mondphase auf einem Komplikationsfeld, wird dieses automatisch ausgeblendet
 - 3 Zeigerfarben individuell wählbar: Warmweiß, Blau, Rot
 
-Erfordert Wear OS 6 oder neuer.
+Erfordert Wear OS 5 oder neuer.
 
 ## Description (EN)
 
@@ -45,4 +45,4 @@ Customizable:
 - When the moon phase sits on a complication slot, that slot is hidden automatically
 - 3 hand colors individually selectable: warm white, blue, red
 
-Requires Wear OS 6 or newer.
+Requires Wear OS 5 or newer.

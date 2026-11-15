@@ -2,11 +2,11 @@
 <Metadata key="CLOCK_TYPE" value="ANALOG"/>
 <UserConfigurations>
 <ListConfiguration id="moon_pos" displayName="@string/moon_pos_label" defaultValue="left" screenReaderText="@string/moon_pos_desc" icon="@drawable/ic_pos_left">
-<ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left" complicationSlotIds="0 1"/>
-<ListOption id="right" displayName="@string/pos_right" icon="@drawable/ic_pos_right" complicationSlotIds="0 1"/>
-<ListOption id="top" displayName="@string/pos_top" icon="@drawable/ic_pos_top" complicationSlotIds="0"/>
-<ListOption id="bottom" displayName="@string/pos_bottom" icon="@drawable/ic_pos_bottom" complicationSlotIds="1"/>
-<ListOption id="off" displayName="@string/pos_off" icon="@drawable/ic_pos_off" complicationSlotIds="0 1"/>
+<ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left"/>
+<ListOption id="right" displayName="@string/pos_right" icon="@drawable/ic_pos_right"/>
+<ListOption id="top" displayName="@string/pos_top" icon="@drawable/ic_pos_top"/>
+<ListOption id="bottom" displayName="@string/pos_bottom" icon="@drawable/ic_pos_bottom"/>
+<ListOption id="off" displayName="@string/pos_off" icon="@drawable/ic_pos_off"/>
 </ListConfiguration>
 <ListConfiguration id="date_pos" displayName="@string/date_pos_label" defaultValue="right" screenReaderText="@string/date_pos_desc" icon="@drawable/ic_pos_right">
 <ListOption id="left" displayName="@string/pos_left" icon="@drawable/ic_pos_left"/>
@@ -36,7 +36,7 @@
 <Variant mode="AMBIENT" target="alpha" value="0"/>
 <DefaultProviderPolicy defaultSystemProvider="STEP_COUNT" defaultSystemProviderType="SHORT_TEXT"/>
 <BoundingOval x="0" y="0" width="90" height="90"/>
-<Complication type="SHORT_TEXT">
+<Complication type="SHORT_TEXT"><Group x="0" y="0" width="90" height="90" name="MoonHide_bottom" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="shortText">
@@ -117,8 +117,8 @@
 </PartText>
 </Default>
 </Condition>
-</Complication>
-<Complication type="RANGED_VALUE">
+</Group></Complication>
+<Complication type="RANGED_VALUE"><Group x="0" y="0" width="90" height="90" name="MoonHide_bottom" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="rangeIconTextTitle">
@@ -261,8 +261,8 @@
 </PartDraw>
 </Default>
 </Condition>
-</Complication>
-<Complication type="GOAL_PROGRESS">
+</Group></Complication>
+<Complication type="GOAL_PROGRESS"><Group x="0" y="0" width="90" height="90" name="MoonHide_bottom" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="rangeIconTextTitleGoalProgress">
@@ -645,8 +645,8 @@
 </Group>
 </Default>
 </Condition>
-</Complication>
-<Complication type="WEIGHTED_ELEMENTS">
+</Group></Complication>
+<Complication type="WEIGHTED_ELEMENTS"><Group x="0" y="0" width="90" height="90" name="MoonHide_bottom" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="rangeIconTextTitleWeightedElements">
@@ -777,24 +777,24 @@
 </Group>
 </Default>
 </Condition>
-</Complication>
-<Complication type="SMALL_IMAGE">
+</Group></Complication>
+<Complication type="SMALL_IMAGE"><Group x="0" y="0" width="90" height="90" name="MoonHide_bottom" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 0 : 255"/>
 <PartImage x="0" y="0" width="90" height="90" name="Image_c83e" alpha="255">
 <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
 </PartImage>
-</Complication>
-<Complication type="MONOCHROMATIC_IMAGE">
+</Group></Complication>
+<Complication type="MONOCHROMATIC_IMAGE"><Group x="0" y="0" width="90" height="90" name="MoonHide_bottom" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;bottom&quot; ? 0 : 255"/>
 <PartImage x="22" y="22" width="47" height="47" name="Icon_d42c" alpha="255">
 <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
 </PartImage>
-</Complication>
+</Group></Complication>
 <Complication type="EMPTY"/>
 </ComplicationSlot>
 <ComplicationSlot slotId="1" displayName="@string/slot_top" isCustomizable="TRUE" supportedTypes="SHORT_TEXT RANGED_VALUE GOAL_PROGRESS WEIGHTED_ELEMENTS SMALL_IMAGE MONOCHROMATIC_IMAGE" pivotY="2.0556" x="180" y="40" width="90" height="90" name="Feldoben_1" alpha="255">
 <Variant mode="AMBIENT" target="alpha" value="0"/>
 <DefaultProviderPolicy defaultSystemProvider="SUNRISE_SUNSET" defaultSystemProviderType="SHORT_TEXT"/>
 <BoundingOval x="0" y="0" width="90" height="90"/>
-<Complication type="SHORT_TEXT">
+<Complication type="SHORT_TEXT"><Group x="0" y="0" width="90" height="90" name="MoonHide_top" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;top&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="shortText">
@@ -875,8 +875,8 @@
 </PartText>
 </Default>
 </Condition>
-</Complication>
-<Complication type="RANGED_VALUE">
+</Group></Complication>
+<Complication type="RANGED_VALUE"><Group x="0" y="0" width="90" height="90" name="MoonHide_top" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;top&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="rangeIconTextTitle">
@@ -1019,8 +1019,8 @@
 </PartDraw>
 </Default>
 </Condition>
-</Complication>
-<Complication type="GOAL_PROGRESS">
+</Group></Complication>
+<Complication type="GOAL_PROGRESS"><Group x="0" y="0" width="90" height="90" name="MoonHide_top" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;top&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="rangeIconTextTitleGoalProgress">
@@ -1403,8 +1403,8 @@
 </Group>
 </Default>
 </Condition>
-</Complication>
-<Complication type="WEIGHTED_ELEMENTS">
+</Group></Complication>
+<Complication type="WEIGHTED_ELEMENTS"><Group x="0" y="0" width="90" height="90" name="MoonHide_top" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;top&quot; ? 0 : 255"/>
 <Condition>
 <Expressions>
 <Expression name="rangeIconTextTitleWeightedElements">
@@ -1535,17 +1535,17 @@
 </Group>
 </Default>
 </Condition>
-</Complication>
-<Complication type="SMALL_IMAGE">
+</Group></Complication>
+<Complication type="SMALL_IMAGE"><Group x="0" y="0" width="90" height="90" name="MoonHide_top" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;top&quot; ? 0 : 255"/>
 <PartImage x="0" y="0" width="90" height="90" name="Imagecopy_6599" alpha="255">
 <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
 </PartImage>
-</Complication>
-<Complication type="MONOCHROMATIC_IMAGE">
+</Group></Complication>
+<Complication type="MONOCHROMATIC_IMAGE"><Group x="0" y="0" width="90" height="90" name="MoonHide_top" alpha="255"><Transform target="alpha" value="[CONFIGURATION.moon_pos] == &quot;top&quot; ? 0 : 255"/>
 <PartImage x="22" y="22" width="47" height="47" name="Iconcopy_24a0" alpha="255">
 <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
 </PartImage>
-</Complication>
+</Group></Complication>
 <Complication type="EMPTY"/>
 </ComplicationSlot>
 <Group x="5" y="5" width="440" height="440" name="ZeigerAlways-On_00ad" alpha="0">
