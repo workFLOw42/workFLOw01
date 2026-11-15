@@ -23,6 +23,11 @@ ANDROID_JAR = os.path.join(SDK, "platforms", "android-36", "android.jar")
 JARSIGNER = r"c:\Program Files\Android\Android Studio\jbr\bin\jarsigner.exe"
 KEYSTORE = r"c:\Users\flori\WatchFaceStudio\keystore\keystore.jks"
 KEY_ALIAS = "key0"
+# bundletool builds the AAB (incl. a valid BundleConfig.pb with bundletool
+# version). A hand-written BundleConfig.pb without version is rejected by Play.
+BUNDLETOOL = (r"c:\Users\flori\AppData\Local\Programs\WatchFaceStudio"
+              r"\tools\common\tools\bundletool-all-1.13.2.jar")
+JAVA = r"c:\Program Files\Android\Android Studio\jbr\bin\java.exe"
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(SCRIPT_DIR, "src")
@@ -196,20 +201,23 @@ def main():
     if os.path.exists(src_res):
         shutil.copytree(src_res, dst_res, dirs_exist_ok=True)
 
-    # Generate BundleConfig.pb programmatically
-    bundle_config_path = os.path.join(aab_dir, "BundleConfig.pb")
-    with open(bundle_config_path, "wb") as f:
-        f.write(b'\x0a\x08\x0a\x04\x08\x01\x10\x01\x12\x00')
-
-    # Step 4: Create AAB zip
-    print("\n[4/5] Creating AAB archive...")
-    unsigned_aab = os.path.join(BUILD, "unsigned.aab")
-    with zipfile.ZipFile(unsigned_aab, "w", zipfile.ZIP_DEFLATED) as z:
-        for root_dir, dirs, files in os.walk(aab_dir):
+    # Step 4: Build AAB with bundletool from a base module zip
+    print("\n[4/5] Building AAB with bundletool...")
+    base_zip = os.path.join(BUILD, "base.zip")
+    base_module_dir = os.path.join(aab_dir, "base")
+    with zipfile.ZipFile(base_zip, "w", zipfile.ZIP_DEFLATED) as z:
+        for root_dir, dirs, files in os.walk(base_module_dir):
             for f in files:
                 filepath = os.path.join(root_dir, f)
-                arcname = os.path.relpath(filepath, aab_dir)
-                z.write(filepath, arcname)
+                arcname = os.path.relpath(filepath, base_module_dir)
+                z.write(filepath, arcname.replace(os.sep, "/"))
+
+    unsigned_aab = os.path.join(BUILD, "unsigned.aab")
+    run([JAVA, "-jar", BUNDLETOOL, "build-bundle",
+         f"--modules={base_zip}",
+         f"--output={unsigned_aab}",
+         "--overwrite"])
+    run([JAVA, "-jar", BUNDLETOOL, "validate", f"--bundle={unsigned_aab}"])
 
     # Step 5: Sign
     print("\n[5/5] Signing AAB...")
