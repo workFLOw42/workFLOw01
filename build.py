@@ -91,15 +91,22 @@ def ensure_dir(path):
 def main():
     print("=== workFLOw Watchface Build ===\n")
 
-    # Read version info from AndroidManifest.xml
+    # Read version and SDK info from AndroidManifest.xml (single source of truth)
+    android_ns = "{http://schemas.android.com/apk/res/android}"
     manifest_path = os.path.join(SRC, "AndroidManifest.xml")
     tree = ET.parse(manifest_path)
     root = tree.getroot()
-    version_code = root.get(
-        "{http://schemas.android.com/apk/res/android}versionCode", "10000012")
-    version_name = root.get(
-        "{http://schemas.android.com/apk/res/android}versionName", "1.3.7")
-    print(f"Read version from manifest: {version_name} (code {version_code})")
+    version_code = root.get(android_ns + "versionCode")
+    version_name = root.get(android_ns + "versionName")
+    uses_sdk = root.find("uses-sdk")
+    min_sdk = uses_sdk.get(android_ns + "minSdkVersion") if uses_sdk is not None else None
+    target_sdk = uses_sdk.get(android_ns + "targetSdkVersion") if uses_sdk is not None else None
+    if not all([version_code, version_name, min_sdk, target_sdk]):
+        print("ERROR: AndroidManifest.xml must define versionCode, versionName, "
+              "minSdkVersion and targetSdkVersion.")
+        sys.exit(1)
+    print(f"Read from manifest: {version_name} (code {version_code}), "
+          f"minSdk {min_sdk}, targetSdk {target_sdk}")
 
     # Ask for signing passwords up front
     signing_env = get_signing_env()
@@ -162,8 +169,8 @@ def main():
          "-o", base_apk,
          "-I", ANDROID_JAR,
          "--manifest", manifest_path,
-         "--min-sdk-version", "34",
-         "--target-sdk-version", "36",
+         "--min-sdk-version", min_sdk,
+         "--target-sdk-version", target_sdk,
          "--version-code", version_code,
          "--version-name", version_name,
          ] + flat_files)
@@ -249,7 +256,7 @@ def main():
     print(f"Output: {final_aab}")
     print(f"Work dir: {WORK}")
     print(f"Size: {size:,} bytes")
-    print(f"Version: {version_name} ({version_code})")
+    print(f"Version: {version_name} ({version_code}), minSdk {min_sdk}")
     print(f"\nUpload this file to Google Play Console.")
 
 

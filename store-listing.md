@@ -20,9 +20,10 @@ Funktionen:
 
 Anpassbar:
 - Mondphase und Datumsanzeige frei positionierbar (links, rechts, oben, unten) oder ausblendbar
+- Liegt die Mondphase auf einem Komplikationsfeld, wird dieses automatisch ausgeblendet
 - 3 Zeigerfarben individuell wählbar: Warmweiß, Blau, Rot
 
-Erfordert Wear OS 5.
+Erfordert Wear OS 6 oder neuer.
 
 ## Description (EN)
 
@@ -41,6 +42,7 @@ Features:
 
 Customizable:
 - Moon phase and date display freely positionable (left, right, top, bottom) or hidden
+- When the moon phase sits on a complication slot, that slot is hidden automatically
 - 3 hand colors individually selectable: warm white, blue, red
 
-Requires Wear OS 5.
+Requires Wear OS 6 or newer.

@@ -4,8 +4,9 @@
     android:versionCode="10000013"
     android:versionName="1.4.0">
 
+    <!-- WFF v5 (format.version below) requires at least Wear OS 6 / API 36 -->
     <uses-sdk
-        android:minSdkVersion="34"
+        android:minSdkVersion="36"
         android:targetSdkVersion="36" />
 
     <uses-feature android:name="android.hardware.type.watch" />

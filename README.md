@@ -30,6 +30,16 @@ Both elements can be placed at any of 4 positions or turned off:
 - **Unten** (bottom)
 - **Aus** (off)
 
+When the moon is placed on top of a complication slot, that slot is disabled automatically:
+
+| Moon position | Top slot | Bottom slot |
+|---------------|----------|-------------|
+| Left / Right / Off | on | on |
+| Top | **off** | on |
+| Bottom | on | **off** |
+
+The date does not disable slots; if placed over a complication it is drawn on top of it.
+
 ### Hand Colors
 The three hand colors (warm white, blue, red) can be freely assigned:
 
@@ -39,11 +49,11 @@ The three hand colors (warm white, blue, red) can be freely assigned:
 | Minute hand | Blue `#46a9ff` | Warm white, Blue, Red |
 | Second hand | Red `#ff6a6a` | Warm white, Blue, Red |
 
-Colors also apply to the always-on display hands.
+Colors are defined as `ColorConfiguration` and also apply to the always-on display hands.
 
 ## Moon Phases
 
-The moon uses a procedural overlay system (no PNG masks):
+The moon uses an overlay system on top of a full-moon texture (ellipses/rectangles for crescents and quarters, PNG masks for the gibbous phases):
 
 | Phase | Type | Display |
 |-------|------|---------|
@@ -59,7 +69,7 @@ The moon uses a procedural overlay system (no PNG masks):
 ## Building
 
 ### Requirements
-- Android SDK Build Tools 34.0.0 (`aapt2`)
+- Android SDK Build Tools 36.0.0 (`aapt2`) and platform `android-36`
 - Java JDK (via Android Studio)
 - Signing keystore
 
@@ -73,12 +83,20 @@ python build.py
 
 Passwords are passed to `jarsigner` via `-storepass:env` / `-keypass:env` and are never stored in the repository.
 
-Output: `out/com.watchfacestudio.workFLOw.aab`
+Version (`versionCode` / `versionName`) and SDK levels are read from `src/AndroidManifest.xml` — bump them there before a release.
+
+Output: `com.watchfacestudio.workFLOw.aab` in the project root (intermediate files in `%TEMP%\workFLOw_build`)
+
+### Validate
+```powershell
+java -jar wff-validator.jar 5 src/raw/watchface.xml
+```
+Validator: [google/watchface](https://github.com/google/watchface/tree/main/third_party/wff)
 
 ### Install for testing
 ```bash
 # Build APK from AAB with bundletool, or install AAB via Play Console
-adb install out/com.watchfacestudio.workFLOw.apk
+adb install com.watchfacestudio.workFLOw.apk
 ```
 
 ## Project Structure
@@ -86,7 +104,7 @@ adb install out/com.watchfacestudio.workFLOw.apk
 ```
 src/
   AndroidManifest.xml          # App manifest (version, SDK, package)
-  raw/watchface.xml            # Main watchface definition (WFF v2)
+  raw/watchface.xml            # Main watchface definition (WFF v5)
   xml/                         # Wear OS config XMLs
   drawable-nodpi-v4/           # PNG assets (moon texture, previews)
   values/strings.xml           # English strings (default)
@@ -102,8 +120,9 @@ build.py                       # Build script
 
 ## Technical Details
 
-- **Watch Face Format**: Version 2
-- **Min SDK**: 34 (Wear OS 5 / Android 14)
+- **Watch Face Format**: Version 5 (needed for `complicationSlotIds` on `ListOption`)
+- **Min SDK**: 36 (Wear OS 6 / Android 16)
+- **Current version**: 1.4.0 (versionCode 10000013)
 - **Package**: `com.watchfacestudio.workFLOw`
 - **Canvas**: 450x450px, circular
 - **Clock type**: Analog
